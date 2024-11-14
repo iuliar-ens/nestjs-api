@@ -1,7 +1,7 @@
 export const generateServiceTemplate = (
-  modelName,
-  resourceName,
-  fieldNames,
+  modelName: string,
+  resourceName: string,
+  fieldNames: string[],
 ) => {
   return `
   import { Injectable } from '@nestjs/common';

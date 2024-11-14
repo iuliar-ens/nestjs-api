@@ -5,5 +5,5 @@ export class Guest implements Prisma.GuestCreateInput {
   first_name: string;
   last_name: string;
   email: string;
-  rsvp_status: string;
+  rsvp_status?: string;
 }

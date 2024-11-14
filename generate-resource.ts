@@ -43,7 +43,7 @@ const fieldNames = fields
 const modelName = resourceName.charAt(0).toUpperCase() + resourceName.slice(1);
 
 // Function to execute a shell command
-const executeCommand = (command) => {
+const executeCommand = (command: string) => {
   try {
     console.log(`--- Executing: ${command}`);
     execSync(command, { stdio: 'inherit' });
@@ -54,7 +54,7 @@ const executeCommand = (command) => {
 };
 
 // Helper function to generate a TypeScript class
-const generateModelClass = (resourceName, fields) => {
+const generateModelClass = (resourceName: string, fields: string) => {
   // Split fields into an array of individual field definitions
   const formattedFields = fields
     .split('\n') // Split by newline to get each field on a new line
@@ -120,7 +120,7 @@ const runMigration = () => {
 };
 
 // Helper function to write content to a file
-const writeToFile = (filePath, content) => {
+const writeToFile = (filePath: string, content: string) => {
   try {
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`--- File written successfully to: ${filePath}`);

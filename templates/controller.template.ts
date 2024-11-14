@@ -1,4 +1,7 @@
-export const generateControllerTemplate = (modelName, resourceName) => {
+export const generateControllerTemplate = (
+  modelName: string,
+  resourceName: string,
+) => {
   return `
   import { ${modelName} } from '@prisma/client';
   import { ${modelName}Service } from './${resourceName}.service';

@@ -1,4 +1,7 @@
-export const generateModuleTemplate = (modelName, resourceName) => {
+export const generateModuleTemplate = (
+  modelName: string,
+  resourceName: string,
+) => {
   return `
   import { Module } from '@nestjs/common';
   import { ${modelName}Controller } from './${resourceName}.controller';
