@@ -1,7 +1,6 @@
-<p align="center">
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) API generator using [Prisma](https://www.prisma.io/).
 
 ## Project setup
 
