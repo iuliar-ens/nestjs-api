@@ -5,6 +5,8 @@ export const generateControllerTemplate = (
   return `
   import { ${modelName} } from '@prisma/client';
   import { ${modelName}Service } from './${resourceName}.service';
+  import { Create${modelName}Dto } from './dto/create${modelName}Dto';
+  import { Update${modelName}Dto } from './dto/update${modelName}Dto';
   import {
     Get,
     Post,
@@ -25,7 +27,7 @@ export const generateControllerTemplate = (
     }
   
     @Post()
-    async create(@Body() postData: ${modelName}): Promise<${modelName}> {
+    async create(@Body() postData: Create${modelName}Dto): Promise<Create${modelName}Dto> {
       return this.${resourceName}Service.create(postData);
     }
   
@@ -42,8 +44,8 @@ export const generateControllerTemplate = (
     @Put(':id')
     async update(
       @Param('id') id: number,
-      @Body() postData: ${modelName},
-    ): Promise<${modelName}> {
+      @Body() postData: Update${modelName}Dto,
+    ): Promise<Update${modelName}Dto> {
       return this.${resourceName}Service.update(id, postData);
     }
   }`;

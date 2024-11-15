@@ -6,6 +6,7 @@ import {
   generateControllerTemplate,
   generateServiceTemplate,
   generateModuleTemplate,
+  generateDtoTemplate,
 } from './templates';
 
 // Check if a resource name was provided
@@ -122,6 +123,10 @@ const runMigration = () => {
 // Helper function to write content to a file
 const writeToFile = (filePath: string, content: string) => {
   try {
+    const directory = path.dirname(filePath);
+    if (!fs.existsSync(directory)) {
+      fs.mkdirSync(directory, { recursive: true }); // Create the directory structure if it doesn't exist
+    }
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`--- File written successfully to: ${filePath}`);
   } catch (err) {
@@ -144,9 +149,15 @@ const generateResources = () => {
   );
   const controllerContent = generateControllerTemplate(modelName, resourceName);
   const moduleContent = generateModuleTemplate(modelName, resourceName);
+  const createDtoContent = generateDtoTemplate(modelName, fieldsArg, 'create');
+  const updateDtoContent = generateDtoTemplate(modelName, fieldsArg, 'update');
 
   // Step 3: Write to the respective files
   const resourceFolder = path.join(__dirname, 'src', resourceName);
+  const dtoFolder = path.join(resourceFolder, 'dto');
+
+  const createDtoFilePath = path.join(dtoFolder, `create${modelName}Dto.ts`);
+  const updateDtoFilePath = path.join(dtoFolder, `update${modelName}Dto.ts`);
 
   const serviceFilePath = path.join(
     resourceFolder,
@@ -158,6 +169,8 @@ const generateResources = () => {
   );
   const moduleFilePath = path.join(resourceFolder, `${resourceName}.module.ts`);
 
+  writeToFile(createDtoFilePath, createDtoContent);
+  writeToFile(updateDtoFilePath, updateDtoContent);
   writeToFile(serviceFilePath, serviceContent);
   writeToFile(controllerFilePath, controllerContent);
   writeToFile(moduleFilePath, moduleContent);

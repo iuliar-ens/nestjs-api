@@ -9,6 +9,8 @@ import {
   Put,
   Controller,
 } from '@nestjs/common';
+import { CreateGuestDto } from './dto/createGuestDto';
+import { UpdateGuestDto } from './dto/updateGuestDto';
 
 @Controller('api/v1/guest')
 export class GuestController {
@@ -20,7 +22,7 @@ export class GuestController {
   }
 
   @Post()
-  async create(@Body() postData: Guest): Promise<Guest> {
+  async create(@Body() postData: CreateGuestDto): Promise<CreateGuestDto> {
     return this.guestService.create(postData);
   }
 
@@ -37,8 +39,8 @@ export class GuestController {
   @Put(':id')
   async update(
     @Param('id') id: number,
-    @Body() postData: Guest,
-  ): Promise<Guest> {
+    @Body() postData: UpdateGuestDto,
+  ): Promise<UpdateGuestDto> {
     return this.guestService.update(id, postData);
   }
 }
