@@ -9,8 +9,8 @@ import {
   Put,
   Controller,
 } from '@nestjs/common';
-import { CreateGuestDto } from './dto/createGuestDto';
-import { UpdateGuestDto } from './dto/updateGuestDto';
+import { CreateGuestDto } from './dto/create-guest.dto';
+import { UpdateGuestDto } from './dto/update-guest.dto';
 
 @Controller('api/v1/guest')
 export class GuestController {

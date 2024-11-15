@@ -156,8 +156,14 @@ const generateResources = () => {
   const resourceFolder = path.join(__dirname, 'src', resourceName);
   const dtoFolder = path.join(resourceFolder, 'dto');
 
-  const createDtoFilePath = path.join(dtoFolder, `create${modelName}Dto.ts`);
-  const updateDtoFilePath = path.join(dtoFolder, `update${modelName}Dto.ts`);
+  const createDtoFilePath = path.join(
+    dtoFolder,
+    `create-${resourceName}.dto.ts`,
+  );
+  const updateDtoFilePath = path.join(
+    dtoFolder,
+    `update-${resourceName}.dto.ts`,
+  );
 
   const serviceFilePath = path.join(
     resourceFolder,
